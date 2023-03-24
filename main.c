@@ -1,23 +1,25 @@
 #include <stdio.h>
 #include <string.h>
 #include "swap.h"
+#include "bubble.h"
 
 int main()
 {
-    int arr1[3][4] = {1, 2, 3, 4, 5};
-    int arr2[3][4] = {{1, 2, 3}, 4, 5};
-    int arr3[3][4] = {{1, 2, 3}, {4, 5}, 5};
-    for (int i = 0; i < 3; i++)
+    int arr[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int sz = sizeof(arr)/sizeof(arr[0]);
+
+    for (int i=0; i<sz; i++)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            printf("%d\n",arr3[i][j]);
-        }
+        printf("%d ", arr[i]);
     }
-    // int a = 10;
-    // int b = 23;
-    // printf("交换前: a=%d, b= %d\n", a, b);
-    // swap(&a, &b);
-    // printf("交换后: a=%d, b= %d\n", a, b);
+    
+    bubble(arr, sz);
+    printf("\n升序排列后:\n");
+    
+    for (int i=0; i<sz; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
     return 0;
 }
