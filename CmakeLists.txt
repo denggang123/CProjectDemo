@@ -8,4 +8,4 @@ set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include)
 
-add_executable(main main.c src/swap.c src/bubble.c)
+add_executable(main main.c src/swap.c src/bubble.c src/game.c)
