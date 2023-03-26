@@ -1,0 +1,15 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "todohighlight.keywords": [
+        {
+            "text": "TODO:",
+            "color": "white",
+            "backgroundColor": "red",
+        },
+        {
+            "text": "ATTENTION:",
+            "color": "white",
+            "backgroundColor": "red",
+        }
+    ]
+}
