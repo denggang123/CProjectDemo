@@ -120,7 +120,6 @@ int IsFull(char board[ROW][COL], int row, int col)
 /* ATTENTION: 暴力法进行判断，还有优化空间(记录最近一次下的位置，则只需要局部搜索) */
 char GetStatus(char board[ROW][COL], int row, int col)
 {
-    int is_full = 0;
     /* 判断行 */
     for (int i = 0; i < row; i++)
     {
@@ -169,14 +168,13 @@ char GetStatus(char board[ROW][COL], int row, int col)
         }
     }
 
-    is_full = IsFull(board, row, col);
-    if (is_full)
+    if (IsFull(board, row, col))
         return 'E';
     else
         return 'C';
 }
 
-void game_sanziqi()
+void game_three_points_chess()
 {
     char board[ROW][COL] = {0};
     char ret = '\0';
@@ -233,7 +231,7 @@ void game_play()
             printf("游戏已退出，欢迎下次再玩\n");
             break;
         case 1:
-            game_sanziqi();
+            game_three_points_chess();
             break;
         default:
             printf("选择错误，请重新选择\n");

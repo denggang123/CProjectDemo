@@ -4,6 +4,6 @@
 #define ROW 10
 #define COL 10
 void game_play();
-void game_sanziqi();
+void game_three_points_chess();
 
 #endif
