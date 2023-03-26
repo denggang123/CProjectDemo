@@ -40,4 +40,6 @@ void bubble_test()
     {
         printf("%d ", arr[i]);
     }
+    printf("\n");
+
 }

@@ -6,7 +6,7 @@
 int main()
 {
     // 冒泡排序
-    // bubble_test(); 
+    bubble_test(); 
 
     // 玩游戏
     game_play();

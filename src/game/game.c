@@ -16,7 +16,7 @@ void game_play()
     do
     {
         menu();
-        printf("请输入您的选择:>\n");
+        printf("\n请输入您的选择:>\n");
         scanf("%d", &input);
         switch (input)
         {
