@@ -11,5 +11,9 @@
             "color": "white",
             "backgroundColor": "red",
         }
-    ]
+    ],
+    "files.associations": {
+        "__config": "c",
+        "types.h": "c"
+    }
 }

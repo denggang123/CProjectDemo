@@ -8,6 +8,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include/bubble)
 include_directories(include/game)
+include_directories(include/common)
 
 set(SRC_LIST
 	main.c
@@ -15,6 +16,7 @@ set(SRC_LIST
     src/bubble/bubble.c
     src/game/game.c
     src/game/game_three_points_chess.c
+    src/common/calc_runtime.c
     )
 
 add_executable(main ${SRC_LIST})
