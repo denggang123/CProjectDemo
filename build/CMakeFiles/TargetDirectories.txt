@@ -1,0 +1,3 @@
+/Users/kerwin/Documents/学习/C学习/available_practice/build/CMakeFiles/main.dir
+/Users/kerwin/Documents/学习/C学习/available_practice/build/CMakeFiles/edit_cache.dir
+/Users/kerwin/Documents/学习/C学习/available_practice/build/CMakeFiles/rebuild_cache.dir

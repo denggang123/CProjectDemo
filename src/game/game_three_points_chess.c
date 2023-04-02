@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "game_three_points_chess.h"
 
-void InitBoard(char board[ROW][COL], int row, int col)
+static void InitBoard(char board[ROW][COL], int row, int col)
 {
     int i = 0;
     int j = 0;
@@ -16,7 +16,7 @@ void InitBoard(char board[ROW][COL], int row, int col)
     }
 }
 
-void DisplayBoard(char board[ROW][COL], int row, int col)
+static void DisplayBoard(char board[ROW][COL], int row, int col)
 {
     int i = 0;
     int j = 0;
@@ -45,7 +45,7 @@ void DisplayBoard(char board[ROW][COL], int row, int col)
     }
 }
 
-void PlayerMove(char board[ROW][COL], int row, int col)
+static void PlayerMove(char board[ROW][COL], int row, int col)
 {
     printf("玩家走\n");
     int x = 0;
@@ -86,7 +86,7 @@ void PlayerMove(char board[ROW][COL], int row, int col)
     }
 }
 
-void ComputerMove(char board[ROW][COL], int row, int col)
+static void ComputerMove(char board[ROW][COL], int row, int col)
 {
     printf("电脑走\n");
     int x = 0;
@@ -103,7 +103,7 @@ void ComputerMove(char board[ROW][COL], int row, int col)
     }
 }
 
-int IsFull(char board[ROW][COL], int row, int col)
+static int IsFull(char board[ROW][COL], int row, int col)
 {
     for (int i = 0; i < row; i++)
     {
@@ -118,7 +118,7 @@ int IsFull(char board[ROW][COL], int row, int col)
 
 /* 获取状态,共4种状态 (*)玩家赢 (#)(电脑赢) (E)平局 (C)继续 */
 /* ATTENTION: 暴力法进行判断，还有优化空间(记录最近一次下的位置，则只需要局部搜索) */
-char GetStatus(char board[ROW][COL], int row, int col)
+static char GetStatus(char board[ROW][COL], int row, int col)
 {
     /* 判断行 */
     for (int i = 0; i < row; i++)

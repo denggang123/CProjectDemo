@@ -14,6 +14,11 @@
     ],
     "files.associations": {
         "__config": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "game.h": "c",
+        "bubble.h": "c",
+        "print.h": "c",
+        "type_traits": "c",
+        "swap.h": "c"
     }
 }

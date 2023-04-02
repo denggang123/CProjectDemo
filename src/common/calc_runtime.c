@@ -12,7 +12,7 @@ double get_program_runtime(void (*function)())
     return runtime;
 }
 
-void test_function()
+static void test_function()
 {
     int sum = 0;
     for (int i = 1; i <= 1000000; i++)
