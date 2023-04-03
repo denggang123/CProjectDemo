@@ -17,6 +17,7 @@ set(SRC_LIST
     src/algorithm/adjust_arr.c
     src/game/game.c
     src/game/game_three_points_chess.c
+    src/game/calculator.c
     src/common/calc_runtime.c
     src/common/print.c
     )

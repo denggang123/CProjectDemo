@@ -19,6 +19,8 @@
         "bubble.h": "c",
         "print.h": "c",
         "type_traits": "c",
-        "swap.h": "c"
+        "swap.h": "c",
+        "game_three_points_chess.h": "c",
+        "calculator.h": "c"
     }
 }
