@@ -21,6 +21,8 @@
         "type_traits": "c",
         "swap.h": "c",
         "game_three_points_chess.h": "c",
-        "calculator.h": "c"
+        "calculator.h": "c",
+        "calc_runtime.h": "c",
+        "adjust_arr.h": "c"
     }
 }
