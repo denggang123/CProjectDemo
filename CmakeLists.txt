@@ -9,6 +9,7 @@ set(CMAKE_BUILD_TYPE Debug)
 include_directories(include/algorithm)
 include_directories(include/game)
 include_directories(include/common)
+include_directories(include/other)
 
 set(SRC_LIST
 	main.c
@@ -20,6 +21,7 @@ set(SRC_LIST
     src/game/calculator.c
     src/common/calc_runtime.c
     src/common/print.c
+    src/other/contact.c
     )
 
 add_executable(main ${SRC_LIST})

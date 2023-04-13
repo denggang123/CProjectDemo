@@ -1,14 +1,4 @@
-#include <stdio.h>
-
-void print_arr_1d(int arr[], int sz)
-{
-    for (int i=0; i<sz; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
-
+#include "bubble.h"
 
 /* 对size字节空间的内容进行逐个交换 */
 static void swap(char* p1, char* p2, int size)
