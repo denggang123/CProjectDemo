@@ -12,9 +12,17 @@ static void menu()
 
 static void InitContact(ContactList *con)
 {
+    /* 动态开辟3个联系人的空间 */
+    con->data = (PeoInfo *)calloc(DEFAULT_SZ, sizeof(PeoInfo));
+    if (con->data == NULL)
+    {
+        perror("InitContact");
+        return;
+    }
+    /* 当前0个联系人信息 */
     con->sz = 0;
-    /* 使用内存设置函数对数组进行初始化 */
-    memset(con->data, 0, sizeof(con->data));
+    /* 当前容量为3 */
+    con->capacity = DEFAULT_SZ;
 }
 
 static void Print(const ContactList *con)
@@ -24,15 +32,27 @@ static void Print(const ContactList *con)
     {
         printf("%-20s\t %-10d\t %-10s\t %-12s\t %-20s\n", con->data[i].name, con->data[i].age, con->data[i].sex, con->data[i].tele, con->data[i].addr);
     }
+    printf("当前通讯录容量：%d, 当前联系人个数：%d\n", con->capacity, con->sz);
 }
 
 static void AddContact(ContactList *con)
 {
-    if (con->sz == MAX_PEOPLE)
+    /* 先判断是否需要扩容 如需要 先扩容 */
+    if (con->sz == con->capacity)
     {
-        printf("通讯录已达上限");
-        return;
+        PeoInfo *tmp = (PeoInfo *)realloc(con->data, (con->capacity + INC_SZ)*sizeof(PeoInfo));
+        if (tmp != NULL)
+        {
+            con->data = tmp;
+            con->capacity += INC_SZ;
+        }
+        else
+        {
+            printf("容量已达到最大！");
+            return;
+        }
     }
+
     /* 增加一个人的信息 */
     printf("请输入姓名:>");
     scanf("%s", con->data[con->sz].name);
@@ -81,12 +101,12 @@ static void DelContact(ContactList *con)
         return;
     }
 
-    for (int i = pos; i < pos - 1; i++)
+    for (int i = pos; i < con->sz - 1; i++)
     {
         con->data[i] = con->data[i + 1];
     }
 
-    pos--;
+    con->sz--;
     printf("删除成功\n");
 }
 
@@ -128,7 +148,12 @@ static void ModifyContact(ContactList *con)
     scanf("%s", con->data[pos].tele);
     printf("请输入地址:>");
     scanf("%s", con->data[pos].addr);
+}
 
+static void DestoryContact(ContactList *con)
+{
+    free(con->data);
+    con->data = NULL;
 }
 
 enum Option
@@ -178,6 +203,7 @@ int contact()
             printf("该功能暂时未开发\n");
             break;
         case EXIT:
+            DestoryContact(&con);
             break;
         default:
             printf("选择错误，请重新选择\n");
