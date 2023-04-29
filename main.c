@@ -1,6 +1,5 @@
 #include "contact.h"
 
-
 int main()
 {
   contact();

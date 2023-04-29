@@ -1,5 +1,24 @@
 #include "contact.h"
 
+void CheckCapacity(ContactList *con)
+{
+    /* 先判断是否需要扩容 如需要 先扩容 */
+    if (con->sz == con->capacity)
+    {
+        PeoInfo *tmp = (PeoInfo *)realloc(con->data, (con->capacity + INC_SZ) * sizeof(PeoInfo));
+        if (tmp != NULL)
+        {
+            con->data = tmp;
+            con->capacity += INC_SZ;
+        }
+        else
+        {
+            printf("容量已达到最大！");
+            return;
+        }
+    }
+}
+
 static void menu()
 {
     printf("******************************************************\n");
@@ -8,6 +27,28 @@ static void menu()
     printf("************    5. sort        6. print   ************\n");
     printf("************            0. exit           ************\n");
     printf("******************************************************\n");
+}
+
+static void LoadContact(ContactList *con)
+{
+    FILE *pf = fopen("/Users/kerwin/Documents/学习/C学习/available_practice/build/con.dat", "r");
+    if (pf == NULL)
+    {
+        perror("LoadContact");
+        return;
+    }
+    // 读文件
+    PeoInfo tmp = {0};
+    while (fread(&tmp, sizeof(PeoInfo), 1, pf))
+    {
+        CheckCapacity(con);
+        con->data[con->sz] = tmp;
+        con->sz ++;
+    }
+
+    // 关闭文件
+    fclose(pf);
+    pf = NULL;
 }
 
 static void InitContact(ContactList *con)
@@ -23,6 +64,7 @@ static void InitContact(ContactList *con)
     con->sz = 0;
     /* 当前容量为3 */
     con->capacity = DEFAULT_SZ;
+    LoadContact(con);
 }
 
 static void Print(const ContactList *con)
@@ -35,23 +77,12 @@ static void Print(const ContactList *con)
     printf("当前通讯录容量：%d, 当前联系人个数：%d\n", con->capacity, con->sz);
 }
 
+
+
 static void AddContact(ContactList *con)
 {
-    /* 先判断是否需要扩容 如需要 先扩容 */
-    if (con->sz == con->capacity)
-    {
-        PeoInfo *tmp = (PeoInfo *)realloc(con->data, (con->capacity + INC_SZ)*sizeof(PeoInfo));
-        if (tmp != NULL)
-        {
-            con->data = tmp;
-            con->capacity += INC_SZ;
-        }
-        else
-        {
-            printf("容量已达到最大！");
-            return;
-        }
-    }
+
+    CheckCapacity(con);
 
     /* 增加一个人的信息 */
     printf("请输入姓名:>");
@@ -150,6 +181,23 @@ static void ModifyContact(ContactList *con)
     scanf("%s", con->data[pos].addr);
 }
 
+static void SaveContact(ContactList *con)
+{
+    FILE *pf = fopen("/Users/kerwin/Documents/学习/C学习/available_practice/build/con.dat", "w");
+    if (pf == NULL)
+    {
+        perror("write con");
+        return;
+    }
+    for (int i = 0; i < con->sz; i++)
+    {
+        fwrite(con->data + i, sizeof(PeoInfo), 1, pf);
+    }
+
+    fclose(pf);
+    pf = NULL;
+}
+
 static void DestoryContact(ContactList *con)
 {
     free(con->data);
@@ -203,7 +251,8 @@ int contact()
             printf("该功能暂时未开发\n");
             break;
         case EXIT:
-            DestoryContact(&con);
+            SaveContact(&con);    // 保存通讯录
+            DestoryContact(&con); // 销毁通讯录
             break;
         default:
             printf("选择错误，请重新选择\n");
